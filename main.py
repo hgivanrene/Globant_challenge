@@ -1,20 +1,25 @@
 from flask import Flask, jsonify
 import pandas as pd
 import os
-from datasets import Department, Job, Employee
+from datasets import Department, Job, Employee # Create the DDL's
 from db import init_db, SessionLocal
 
 app = Flask(__name__)
 
-# Initialize the Data Base
+# Creates, configure and initialize the db session
 init_db()
 
 # Path to the csv files
 query_base_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
 
-def save_to_db(model, data):
+def save_to_db(model, data, batch_size=1000):
     session = SessionLocal()
-    session.bulk_insert_mappings(model, data)
+
+    # Insert of data in batches from 1 to 1000
+    for i in range(0, len(data), batch_size):
+        batch = data[i:i + batch_size]
+        session.bulk_insert_mappings(model, batch)
+    
     session.commit()
     session.close()
 
