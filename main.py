@@ -146,4 +146,4 @@ def get_second_requirement():
     return Response(output, mimetype='text/plain')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8080)
