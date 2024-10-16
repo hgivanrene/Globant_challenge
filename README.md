@@ -36,14 +36,60 @@ To solve this section of the challenge I created a connection to the database to
 
 
 # Repo clonning
-git clone git@github.com:hgivanrene/Globant_challenge.git
+git clone git@github.com:hgivanrene/Globant_challenge.git # This command is when you have your ssh key configured in the repo. This option is quite more safe.
+git clone https://github.com/hgivanrene/Globant_challenge.git # This option is to clone the repo using the web URL.
 
-# Usage
-On your local terminal execute the main python file.
-    Example:
-        Python3 main.py
 
-Once you execute the main file the API will be waiting for the loading of the data that comes from the CSV files. In another tab in your terminal execute the next commands.
+# Docker installation on mac with colima
+
+1. Homebrew installation.
+Homebrew is the package manager for macOS and it will help us to install all kinds of things in the future.
+To install homebrew we must open the terminal application that comes by default on the mac and perform the following command:
+
+    -/bin/bash -c “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)”
+
+At the end of running the command it will ask you to run the following two commands which are to add the homebrew to your PATH:
+
+    -(echo; echo 'eval “$(/opt/homebrew/bin/brew shellenv)”') >> /Users/<user_name>/.zprofile.
+    *Note: The <user_name> must be changed to the username assigned on your machine.
+    -eval “$(/opt/homebrew/bin/brew shellenv)”
+
+2. Once the homebrew is installed we move on to install colima.
+
+    -brew install colima
+
+3. Then we install the Docker client.
+
+    -brew install docker
+    -brew install astro
+
+4. Starting colima for the first time
+Once we have completed the previous steps we proceed to start colima. The first time we will do it assigning CPU and
+MEMORY with the following command.
+
+    -colima start --cpu 4 --memory 6
+
+To start colima on future occasions we would simply pass the command as follows:
+    -colima start
+
+To stop colima we do it in the following way:
+    -colima stop
+
+
+# Usage with Docker
+
+Create the image on your local machine
+    -docker build -t globant_challenge .
+
+Run the container from your image and define the port that will be use, in this case I use the port 8080. Also, I named my container as code_challenge to access easely.
+    -docker run -d -p 8080:8080 --name code_challenge globant_challenge
+
+Check that your container code_challenge is running.
+    -docker ps
+
+If your container is running properly that means that your local REST API is running and is available to receive your POST and GET commands.
+
+Once you have your container running it will be waiting for the uploading of the data that comes from the CSV files. In another tab of your terminal execute the next commands.
 
 Command to resquest a POST to this local REST API project:
     curl -X POST http://127.0.0.1:5000/migrate/{name_of_the_csv_file}
@@ -61,4 +107,6 @@ Command to resquest a GET to this local REST API project:
         curl -X GET http://127.0.0.1:5000/get_requirement/first-requirement
         curl -X GET http://127.0.0.1:5000/get_requirement/second-requirement
 
-Once you use the commands GET on your terminal you can use the URL's http://127.0.0.1:5000/get_requirement/first-requirement and http://127.0.0.1:5000/get_requirement/second-requirement to look for the endpoint response on your prefer browser.
+*Note: This commands can be also executed from the Postman platform (https://www.postman.com) if you prefer a UI environment to execute the commands.
+
+Once you use the commands GET on your terminal or Postman platform you can use the URL's http://127.0.0.1:5000/get_requirement/first-requirement and http://127.0.0.1:5000/get_requirement/second-requirement to look for the endpoint response on your prefer browser.
