@@ -12,7 +12,7 @@ app = Flask(__name__)
 init_db()
 
 # Path to the csv files
-query_base_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+query_base_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'Data')
 
 def save_to_db(model, data, batch_size=1000):
     session = SessionLocal()
