@@ -92,21 +92,21 @@ If your container is running properly that means that your local REST API is run
 Once you have your container running it will be waiting for the uploading of the data that comes from the CSV files. In another tab of your terminal execute the next commands.
 
 Command to resquest a POST to this local REST API project:
-    curl -X POST http://127.0.0.1:5000/migrate/{name_of_the_csv_file}
+    curl -X POST http://localhost:8080/migrate/{name_of_the_csv_file}
 
     Examples for the principals files of the project:
-        curl -X POST http://127.0.0.1:5000/migrate/departments
-        curl -X POST http://127.0.0.1:5000/migrate/jobs
-        curl -X POST http://127.0.0.1:5000/migrate/hired_employees
+        curl -X POST http://localhost:8080/migrate/departments
+        curl -X POST http://localhost:8080/migrate/jobs
+        curl -X POST http://localhost:8080/migrate/hired_employees
 
 
 Command to resquest a GET to this local REST API project:
-    curl -X GET http://127.0.0.1:5000/get_requirement/{name_of_the_requiremnt}
+    curl -X GET http://localhost:8080/get_requirement/{name_of_the_requiremnt}
 
     Examples to call the endpoints of the requirements from the stakeholders:
-        curl -X GET http://127.0.0.1:5000/get_requirement/first-requirement
-        curl -X GET http://127.0.0.1:5000/get_requirement/second-requirement
+        curl -X GET http://localhost:8080/get_requirement/first-requirement
+        curl -X GET http://localhost:8080/get_requirement/second-requirement
 
 *Note: This commands can be also executed from the Postman platform (https://www.postman.com) if you prefer a UI environment to execute the commands.
 
-Once you use the commands GET on your terminal or Postman platform you can use the URL's http://127.0.0.1:5000/get_requirement/first-requirement and http://127.0.0.1:5000/get_requirement/second-requirement to look for the endpoint response on your prefer browser.
+Once you use the commands GET on your terminal or Postman platform you can use the URL's http://localhost:8080/get_requirement/first-requirement and http://localhost:8080/get_requirement/second-requirement to look for the endpoint response on your prefer browser.
