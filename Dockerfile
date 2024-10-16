@@ -12,5 +12,5 @@ COPY . .
 EXPOSE 8080
 # Expose the 8080 port from the container
 
-CMD ["python3", "main.py"]
+CMD ["python3", "scripts/main.py"]
 # Define the default command that will be execute once the container start
